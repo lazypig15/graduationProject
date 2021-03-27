@@ -9,19 +9,19 @@
                 <p>正品保障 · 放心购买</p>
             </div>
         </div>
-        <slide-show/>
+        <!-- <slide-show/> -->
     </div>
 
 </template>
 
 <script>
-    import SlideShow from "../components/SlideShow";
+    // import SlideShow from "../components/SlideShow";
 
     export default {
         name: "index",
-        components: {
-            SlideShow,
-        }
+        // components: {
+        //     SlideShow,
+        // }
     }
 </script>
 
@@ -29,13 +29,13 @@
 
     .index_bg, .index_bg img {
         width: 100vw;
-        height: 100vh;
+        height: 90vh;
         position: relative;
     }
 
     .mask {
         width: 100vw;
-        height: 100vh;
+        height: 90vh;
         position: absolute;
         top: 0;
         left: 0;
