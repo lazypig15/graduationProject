@@ -6,8 +6,9 @@ import Login from "../modules/Login";
 import Register from "../modules/Register";
 Vue.use(Router)
 export default new Router({
+    mode:'history',
     routes:[
-        {path:'/',component:shopIndex},
+        {path:'/',redirect:'/home'},
         {path:'/home',component:shopIndex},
         {path:'/addUs',component:AddUs},
         {path:'/login',component:Login},

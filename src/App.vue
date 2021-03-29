@@ -22,7 +22,6 @@
                 failedColor: '#f0ad4e',
                 height: 5
             });
-
         }
     }
 </script>

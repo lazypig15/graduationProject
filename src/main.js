@@ -8,8 +8,9 @@ import 'view-design/dist/styles/iview.css';
 import './assets/common.css'
 import './permission.js'
 import './filter/filter'
+
 const vueUse = {
-     apis, Directive,ViewUI
+    apis, Directive, ViewUI
 }
 Object.keys(vueUse).forEach(item => {
     Vue.use(vueUse[item])
@@ -21,7 +22,6 @@ Vue.config.productionTip = false
 new Vue({
     router,
     render: h => h(App),
-
 }).$mount('#app')
 
 

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function $ajax({url = '/', method = 'GET', data = {}}) {
+        return new Promise((resolve, reject) => {
+            method = method.toUpperCase();
+            let params = '';
+            for (let x in data) {
+                params += `${x}=${data[x]}&`
+            }
+            params = params.slice(0, params.length - 1);
+            let xhr = new XMLHttpRequest();
+            if (method === 'GET') {
+                url = url + '?' + params;
+                xhr.open(method, url, true);
+                xhr.send();
+            }
+            if (method === 'POST') {
+                xhr.open(method, url, true)
+                xhr.setRequestHeader("content-type", "application/x-www-form-urlencoded");
+                xhr.send(params);
+            }
+            xhr.onreadystatechange = function (data) {
+                if (xhr.readyState != 4) return
+                if (xhr.status >= 200 && xhr.status <= 299) {
+                    resolve(JSON.parse(xhr.responseText));//执行成功函数
+                } else if (xhr.status >= 400) {
+                    reject('error');//执行失败函数
+                }
+            }
+        })
+    }
+
+    let data = []
+    for(let i =0 ; i<36;i++){
+        $ajax({
+            url: 'http://152.136.185.210:7878/api/m5/home/data',
+            data: {
+                type:'sell',
+                page:i
+            }
+        }).then(res => {
+            res = res.data.list
+            console.log(res)
+
+            res.forEach(item => {
+                item.showLarge=JSON.stringify(item.showLarge)
+                item.show=JSON.stringify(item.show)
+                $ajax({url:'http://localhost:9090/data',data:item}).then(res=>console.log(res))
+
+            })
+        })
+    }
+
+</script>
+
+</body>
+</html>
